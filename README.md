@@ -16,7 +16,6 @@ leaves the network except the receipt you choose to have read.
 
 - [Features](#features)
 - [How the splitting works](#how-the-splitting-works)
-- [Screenshots](#screenshots)
 - [Quick start](#quick-start)
 - [Configuration](#configuration)
 - [Using it from your phone](#using-it-from-your-phone)
@@ -132,17 +131,6 @@ of randomized inputs.
 > arithmetic on currency drifts by fractions of a cent and compounds across the
 > line items of a bill. The only place a decimal appears is at the presentation
 > edge.
-
----
-
-## Screenshots
-
-> Add your own screenshots here before publishing, e.g.:
->
-> ```markdown
-> ![Event view](docs/event.png)
-> ![Assignment grid](docs/assign.png)
-> ```
 
 ---
 
