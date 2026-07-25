@@ -533,6 +533,4 @@ left out — is in [REQUIREMENTS.md](REQUIREMENTS.md).
 
 ## License
 
-No license file is included. Add one before publishing if you want others to be
-able to use this — without it, default copyright applies and nobody may
-legally reuse the code.
+[Coming soon]
