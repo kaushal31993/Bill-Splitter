@@ -1,0 +1,15 @@
+.env
+.env.example
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+node_modules/
+dist/
+.DS_Store
+*.xlsx
+
+# Editor / tooling local config
+.claude/
+.idea/
+.vscode/

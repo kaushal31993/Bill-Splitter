@@ -1,0 +1,46 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: billsplitter
+      POSTGRES_PASSWORD: billsplitter
+      POSTGRES_DB: billsplitter
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT:-5433}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U billsplitter -d billsplitter"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://billsplitter:billsplitter@db:5432/billsplitter
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      EXTRACTION_MODEL: ${EXTRACTION_MODEL:-claude-haiku-4-5}
+      EXTRACTION_EFFORT: ${EXTRACTION_EFFORT:-low}
+      PREFER_PDF_TEXT_LAYER: ${PREFER_PDF_TEXT_LAYER:-true}
+      MAX_UPLOAD_MB: ${MAX_UPLOAD_MB:-15}
+      UPLOAD_DIR: /data/uploads
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173}
+    volumes:
+      - uploads:/data/uploads
+    ports:
+      - "${API_PORT:-8000}:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build: ./frontend
+    ports:
+      - "${WEB_PORT:-5173}:80"
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
+  uploads:
